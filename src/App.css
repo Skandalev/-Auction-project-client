@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  font-family: 'Signika', sans-serif;
+  background: #2193b0;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  min-height: 120vh;
 }
 
 .App-logo {
@@ -27,6 +32,37 @@
 .App-link {
   color: #61dafb;
 }
+nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 3vw;
+  opacity: 0.8;
+
+  flex-wrap: wrap;
+}
+.navbarrr{
+  background-color: rgb(16, 203, 153);
+}
+.navbarrr a{
+  text-decoration: none;
+  color: black;
+}
+
+
+a{
+  text-decoration: none;
+  color: black;
+}
+.navbarrr a:hover{
+  color: red;
+}
+.navtime{
+  margin: 0;
+}
+.bg-light{
+  display: none !important;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -35,4 +71,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+@media only screen and (max-width: 600px) {
+ .navbarrr{
+  display: none !important;
+}
+.bg-light{
+  display: block !important;
+}
 }

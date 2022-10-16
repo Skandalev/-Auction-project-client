@@ -1,0 +1,30 @@
+.items{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content:  space-evenly;
+    align-items: baseline;
+}
+
+h2, h4{
+    margin: 0;
+}
+h6{
+    margin-bottom: -1vw !important;
+}
+
+.types-navs a{
+    text-decoration: none;
+}
+
+.types-navs a:hover{
+    color: red !important;
+}
+@media only screen and (max-width: 600px) {
+.all-items, .types-navs{
+    display: none !important;
+    
+}
+
+}
