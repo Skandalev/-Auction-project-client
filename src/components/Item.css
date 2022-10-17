@@ -1,0 +1,11 @@
+.one-item{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+    min-height: 78vh;
+    justify-content: space-around;
+}
+.valid-bid{
+    color: red; 
+}

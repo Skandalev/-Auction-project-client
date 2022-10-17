@@ -1,0 +1,9 @@
+.span-users-items{
+
+    display: flex;
+    border: black;
+    justify-content: space-evenly;
+    align-items: baseline;
+    align-content: flex-end;
+    flex-wrap: wrap;
+}

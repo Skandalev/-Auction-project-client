@@ -5,7 +5,7 @@ import {change, selectAll} from "../redux/InfoSlice"
 import {useDispatch, useSelector} from "react-redux"
 import Button from 'react-bootstrap/Button';
 import './ShowUsersItems.css'
-const ShowUsersItems = (props) => {
+const ShowUsersNoBidsItems = (props) => {
     useEffect(() => {
         showUsersItems()
     }, [])
@@ -13,7 +13,7 @@ const ShowUsersItems = (props) => {
       const [usersItems, setusersItems] = useState({})
       function showUsersItems(){
         objAll.userlogged.valid === "logged"&&(
-          axios.post("/api1/additems", {email:objAll.userlogged.user.email}).then( async (res) => {
+          axios.post("/api1/soldto", {email:objAll.userlogged.user.email,status:"no bids"}).then( async (res) => {
            await res.data && setusersItems(res.data);
           }))
         }
@@ -26,14 +26,18 @@ const ShowUsersItems = (props) => {
                 }
               })
               .catch((err) => console.log(err));
-          };  
+          }; 
+     const publishAgain = (e) =>{
+             
+     }     
+          
   return (
     <div>{usersItems.items&&usersItems.items.length>0? 
         <div>
-         <h1>Your auction Items</h1>
-         <p>you can delete your action lots by clicking on the X button</p>
-         <p>if you delete lots three hours before the the auction ends you must pay abandon fee </p>
-      </div>: <div> <h3>You still didnt add auction items </h3> <h4>you will see your auctions here when you add them </h4> </div>}
+         <h1>All Auctions that ended without bids</h1>
+         <p>you can delete your action lots by clicking on the X button when ever you want</p>
+         <p>the Item will be deleted permanently or you can press on the green button to publish this auction again (try to lower the starter price)</p>
+      </div>: <div> <h3>You dont have auction that ended with no bids </h3> <h4>you will see them here when if no one make a bid on your Items </h4> </div>}
        {usersItems.items&&
        
        usersItems.items.map((e, i) => {
@@ -55,9 +59,9 @@ const ShowUsersItems = (props) => {
              <br /> name:{e.objname} <br />
              type:{e.objtype} <br />
              sold to: { e.clientemail} <br />
-             seller: {e.objselleremail} <br />
-            starter price:{e.objlastprice} <br />{" "}
-             last bid:{e.objbidprice[0]} <br />
+             starter prize:{e.objlastprice} <br />{" "}
+             <label htmlFor=""></label>
+            <input  onChange={(e)=>{}} type="text" style={{textAlign:"center"}} placeholder={e.objlastprice}  /> <br />
              end of auction: {e.selltime} <br />
              <Button variant='danger'
                onClick={() => {
@@ -66,6 +70,7 @@ const ShowUsersItems = (props) => {
                >
                X
              </Button>
+             <Button onClick={()=>{publishAgain(e)}} variant='success'>Publish again</Button>
              {" "}
              {/* <br /> <Link to={`item/${e._id}`}>details </Link> */}
              <br />
@@ -75,9 +80,9 @@ const ShowUsersItems = (props) => {
          );
        }) 
        }
-       <Button onClick={()=>{props.setOpenAll(false)}} variant='outline-danger'>Close</Button>
+       <Button onClick={()=>{props.setOpenNo(false)}} variant='outline-danger'>Close</Button>
        </div>
   )
 }
 
-export default ShowUsersItems
+export default ShowUsersNoBidsItems

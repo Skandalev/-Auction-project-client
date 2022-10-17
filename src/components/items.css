@@ -13,6 +13,11 @@ h2, h4{
 h6{
     margin-bottom: -1vw !important;
 }
+.vertical{
+    writing-mode: vertical-lr;
+    position: absolute;
+    opacity: 0.3;
+}
 
 .types-navs a{
     text-decoration: none;
@@ -20,6 +25,9 @@ h6{
 
 .types-navs a:hover{
     color: red !important;
+}
+.main-div{
+    min-height: 80vh;
 }
 @media only screen and (max-width: 600px) {
 .all-items, .types-navs{

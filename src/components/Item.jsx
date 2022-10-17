@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { change, userlog, selectAll } from "../redux/InfoSlice";
 import TimeLeft from "./TimeLeft";
 import StatusItem from "./StatusItem";
+import Button from 'react-bootstrap/Button';
+import './Item.css'
 
 function Item() {
   const { id } = useParams();
@@ -45,13 +47,13 @@ function Item() {
         if (
           (parseInt(newArray[0]) < 100 &&
             parseInt(bidInput) > parseInt(newArray[0]) + 4) ||
-          (parseInt(newArray[0]) <= 1000 &&
+          (parseInt(newArray[0]) <= 999 &&
             parseInt(bidInput) > parseInt(newArray[0]) + 49)
             ||
-          (parseInt(newArray[0]) > 1000 &&
+          (parseInt(newArray[0]) >= 1000 &&
             parseInt(bidInput) >parseInt(newArray[0]) + 149) || newArray.length === 0
         ) {
-          newArray.unshift(bidInput);
+          newArray.unshift(parseInt(bidInput));
           newPersonArray.unshift(objAll.userlogged.user.email);
         }
       }
@@ -76,64 +78,73 @@ function Item() {
   }
 
   return (
-    <div>
+    <div className="one-item">
+     
+      <span >
+        <br /><br />
       <h1>{itemById.objname}</h1>
       <img
         src={itemById.picture}
         alt=""
         style={{ height: "20vw", width: "30vw" }}
       />
-      <h3>starter price:{itemById.objlastprice}$</h3>
-      <h3> started: {itemById.startselltime}</h3>
-      <h3>end of auction: {itemById.selltime}</h3>
+      </span>
+      <span>
+        <br /><br />
+        {itemById.objbidprice&&itemById.objbidprice[0]? <div><h3 style={{margin:"0"}}>Last bid:  {itemById.objbidprice[0]}$ </h3>  <h6 style={{padding:"1vw"}}>Starter price:{itemById.objlastprice}$</h6></div>  : <h3> Starter price:{itemById.objlastprice}$</h3> }
+     
+      <h5> started: {itemById.startselltime}</h5>
+      <h5>end of auction: {itemById.selltime}</h5>
       <TimeLeft selltime={itemById.selltime}  ></TimeLeft>
       <StatusItem itemById={itemById}></StatusItem>
       {itemById.objbidprice && (
-        <h3>last bid price:{itemById.objbidprice[0]?itemById.objbidprice[0]:"no bids yet"}$</h3>
+        <h3>{!itemById.objbidprice[0]&&itemById.status==="readyToSale"&&"no bids yet"}</h3>
       )}
-
-      {objAll.userlogged.valid === "logged" ? (
+      {itemById.status==="readyToSale"?
+      objAll.userlogged.valid === "logged" ? (
         <div>
           logged as: {objAll.userlogged.user.email}
           <br />
-          <br />
           <label htmlFor=""> add a bid</label>
           <form id="inputbid" action="">
-            <input
+            <input style={{textAlign:"center"}}
               type="text"
               onChange={(e) => {
                 setbidInput(e.target.value);
               }}
             />
           </form>
-          <button
+          <Button
+          variant="success"
             onClick={() => {
               addBid();
             }}
           >
             add bid
-          </button>
+          </Button>
           <br />
-          {  parseInt(bidInput)>0? <div></div>: <p>please enter just positive digits</p> }
+       
+          {  parseInt(bidInput)>0 ? <div> <br /></div>: <p className="valid-bid">please enter just positive digits</p> }
   
           {newArray&& newArray.length===0&& parseInt(bidInput) < parseInt(itemById.objlastprice ) && (
-            <p>the new bid must be bigger or equal the starter price</p>
+            <p className="valid-bid">the new bid must be bigger or equal the starter price</p>
           )  }
           {newArray &&
-            parseInt(newArray[0]) < 100 &&
+            parseInt(newArray[0]) < 99 &&
             parseInt(bidInput) <= parseInt(newArray[0]) + 4 && (
-              <p>the bid must be bigger then the last bid at least for 5$</p>
+              <p className="valid-bid">the bid must be bigger then the last bid at least for 5$</p>
             )}
                {newArray &&
-            parseInt(newArray[0]) <= 1000 &&
+            parseInt(newArray[0]) <= 999 &&  parseInt(newArray[0]) >= 100 &&
             parseInt(bidInput) <= parseInt(newArray[0]) + 49 && (
-              <p>the bid must be bigger then the last bid at least for 50$</p>
+              <p className="valid-bid">the bid must be bigger then the last bid at least for 50$</p>
             )}
                {newArray &&
-            parseInt(newArray[0]) > 1000 &&
+            parseInt(newArray[0]) >= 1000 &&
             parseInt(bidInput) <= parseInt(newArray[0]) + 149 && (
-              <p>the bid must be bigger then the last bid at least for 150$</p>
+              <p className="valid-bid">the bid must be bigger then the last bid at least for 150$</p>
             )}
+           
              {newArray && newArray.length>0&& <h4>last bids</h4>}
 
           {newArray ? (
@@ -142,15 +153,16 @@ function Item() {
                 <div key={i}>
                   {" "}
                   <span>
-                    {e} {itemById.personbid[i]}{" "}
+                    {e+"$"} {itemById.personbid[i]}{" "}
                   </span>{" "}
                   <br />{" "}
                 </div>
               );
             })
-          ) : (
+          )  : (
             <div></div>
           )}
+      
         </div>
       ) : (
         <div>
@@ -160,7 +172,8 @@ function Item() {
             <strong>$$$</strong>
           </h4>{" "}
         </div>
-      )}
+      ) : itemById.status==="no bids"? <h5>No bids was made </h5> :itemById.status==="sold"? <h4>SOLD</h4>: null}
+      </span>
     </div>
   );
 }

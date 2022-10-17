@@ -4,7 +4,7 @@ import { useState,useEffect } from 'react'
 const Rules = () => {
  
   return (
-    <div>
+    <div style={{minHeight:"80vh"}}>
         
       <h1>Rules and Terms</h1>
       <strong>Rules of the bids</strong>
@@ -12,7 +12,9 @@ const Rules = () => {
       <li>The first bid must be bigger or equal to the starter price.</li>
       <li> If the last bid is under 100$ the next bid must be bigger 5$ at least.</li>
       <li>  If the last bid is under 1000$ the next bid must be bigger 50$ at least.</li>
-      <li> If the last bid is more than 1000$ next bid must be bigger 150$ at least.  </li></p>
+    <li> If the last bid is more than 1000$ next bid must be bigger 150$ at least.  </li>
+    <li>The <u> bid input </u> will recive the first whole number, anything that comes after the number doesn"t matter </li>
+    </p>
 <div>
   
 

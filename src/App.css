@@ -4,8 +4,12 @@
   background: #2193b0;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  min-height: 120vh;
+  min-height: 100vh;
+  min-width: 98vw;
+ 
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -36,29 +40,31 @@ nav{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  height: 3vw;
+  height: 4vw;
   opacity: 0.8;
 
   flex-wrap: wrap;
 }
 .navbarrr{
-  background-color: rgb(16, 203, 153);
+  background-color: #08355e;
 }
 .navbarrr a{
   text-decoration: none;
-  color: black;
+  color: aliceblue !important;
+  font-size:larger;
 }
 
 
 a{
   text-decoration: none;
-  color: black;
+ 
 }
 .navbarrr a:hover{
   color: red;
 }
 .navtime{
   margin: 0;
+  color: aliceblue;
 }
 .bg-light{
   display: none !important;
@@ -74,7 +80,7 @@ a{
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 725px) {
  .navbarrr{
   display: none !important;
 }

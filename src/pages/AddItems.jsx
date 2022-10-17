@@ -4,6 +4,8 @@ import axios from "axios";
 import {useDispatch, useSelector} from "react-redux"
 import {change, selectAll} from "../redux/InfoSlice"
 import { useState, useEffect } from "react";
+import './AddItems.css'
+import Button from 'react-bootstrap/Button';
 const AddItems = () => {
   const objAll= useSelector(selectAll)
   let minutCheck = 0
@@ -39,7 +41,7 @@ const AddItems = () => {
         picture: Yup.string().required("picture is required").url(),
         objlastprice: Yup.string().required("objlastprice is required"),
       });
-  return <div> {objAll.userlogged.valid === "logged"? <div>
+  return <div> {objAll.userlogged.valid === "logged"? <div style={{minHeight:'80vh'}}>
     
    <h1>Hi {objAll.userlogged.user&&objAll.userlogged.user.fullName}</h1>
     <h1>Add Item</h1>
@@ -94,7 +96,7 @@ const AddItems = () => {
                   onBlur={handleBlur}>
                     <option value="all">all</option>
                     <option value="Toys">Toys</option>
-                    <option value="Furnituer">Furniture</option>
+                    <option value="Furniture">Furniture</option>
                     <option value="Relic">Relic</option>
                     <option value="Vintage">Vintage</option>
                     <option value="Electronic">Electronics</option>
@@ -151,17 +153,20 @@ const AddItems = () => {
                   onBlur={handleBlur}
                   />
                 <p>{errors.objselleremail && touched.objselleremail && errors.objselleremail}</p> */}
-                <button
+                <Button
                   type="submit"
-                  variant="contained"
+                  variant="primary"
               
                 >
                   Add Item
-                </button>  
+                </Button>  
               </form>
             )}
           </Formik>
-          </div>: <div><h1>first you must login or register</h1></div> }
+          </div >: <div className="bbb">
+
+          <img src="" alt=""  style={{width:"98.6vw"}}/>
+          </div> }
   </div>;
 };
 export default AddItems;

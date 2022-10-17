@@ -5,7 +5,7 @@ import {change, selectAll} from "../redux/InfoSlice"
 import {useDispatch, useSelector} from "react-redux"
 import Button from 'react-bootstrap/Button';
 import './ShowUsersItems.css'
-const ShowUsersItems = (props) => {
+const ShowUsersSoldItems = (props) => {
     useEffect(() => {
         showUsersItems()
     }, [])
@@ -13,7 +13,7 @@ const ShowUsersItems = (props) => {
       const [usersItems, setusersItems] = useState({})
       function showUsersItems(){
         objAll.userlogged.valid === "logged"&&(
-          axios.post("/api1/additems", {email:objAll.userlogged.user.email}).then( async (res) => {
+          axios.post("/api1/soldto", {email:objAll.userlogged.user.email,status:"sold"}).then( async (res) => {
            await res.data && setusersItems(res.data);
           }))
         }
@@ -30,10 +30,10 @@ const ShowUsersItems = (props) => {
   return (
     <div>{usersItems.items&&usersItems.items.length>0? 
         <div>
-         <h1>Your auction Items</h1>
-         <p>you can delete your action lots by clicking on the X button</p>
-         <p>if you delete lots three hours before the the auction ends you must pay abandon fee </p>
-      </div>: <div> <h3>You still didnt add auction items </h3> <h4>you will see your auctions here when you add them </h4> </div>}
+         <h1>All your Sold Items</h1>
+         <p>you can delete your action lots by clicking on the X button when ever you want</p>
+         <p>the Item will be deleted permanently</p>
+      </div>: <div> <h3>You still dont have sold auction items </h3> <h4>you will see your sold auctions here when someone buy them </h4> </div>}
        {usersItems.items&&
        
        usersItems.items.map((e, i) => {
@@ -56,7 +56,7 @@ const ShowUsersItems = (props) => {
              type:{e.objtype} <br />
              sold to: { e.clientemail} <br />
              seller: {e.objselleremail} <br />
-            starter price:{e.objlastprice} <br />{" "}
+             starter prize:{e.objlastprice} <br />{" "}
              last bid:{e.objbidprice[0]} <br />
              end of auction: {e.selltime} <br />
              <Button variant='danger'
@@ -75,9 +75,9 @@ const ShowUsersItems = (props) => {
          );
        }) 
        }
-       <Button onClick={()=>{props.setOpenAll(false)}} variant='outline-danger'>Close</Button>
+       <Button onClick={()=>{props.setOpenSold(false)}} variant='outline-danger'>Close</Button>
        </div>
   )
 }
 
-export default ShowUsersItems
+export default ShowUsersSoldItems

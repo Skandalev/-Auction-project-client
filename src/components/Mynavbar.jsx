@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+
 import './Mynavbar.css'
 import { Link, Route, Routes } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
@@ -12,7 +13,13 @@ import {change, userlog, selectAll} from "../redux/InfoSlice"
 import { useState } from 'react';
 function Mynavbar(props) {
   const objAll= useSelector(selectAll)
+  const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
+  const logoutuser = () =>{
+    dispatch(userlog({}))
+    setExpanded(false)
+    localStorage.setItem('mySecretKey',"")
+   }
 
   return (
     <>
@@ -41,7 +48,7 @@ function Mynavbar(props) {
                   {objAll.userlogged.valid === "logged"?null:   <Link onClick={() => setExpanded(false)} to="/registerandlogin">Login or Register</Link>}
                   {props.curentTime}
                   <NavDropdown
-                    title="Dropdown"
+                    title="Categories"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
                      <Link onClick={() => setExpanded(false)} to="/categorie/Toys">Toys</Link>   <br />
@@ -54,6 +61,11 @@ function Mynavbar(props) {
                     <NavDropdown.Divider />   
                     <Link onClick={() => setExpanded(false)} to="/categorie/Electronic">Electronics</Link> <br />
                   </NavDropdown>
+                  {objAll.userlogged.valid === "logged"&& <div>
+                              
+                              <Link to='/youritems'> <p> {objAll.userlogged.user&&objAll.userlogged.user.fullName}s <br /> peronal area </p> </Link> 
+                              <Button  variant="danger" >    <Link to='/' onClick={()=>{logoutuser()}}> log out</Link>  </Button>
+                        </div> }
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

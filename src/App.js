@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {change, userlog, selectAll} from "./redux/InfoSlice"
 import Mynavbar from './components/Mynavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from './components/Footer';
 
 function App() {
   const objAll= useSelector(selectAll)
@@ -25,7 +26,14 @@ function App() {
     setInterval(() => {
       setcurentTime(new Date().toLocaleString())
     }, 1000);
-
+    let emailFromStorage = localStorage.getItem('mySecretKey')
+    if(emailFromStorage){
+    emailFromStorage = JSON.parse(emailFromStorage)
+    }
+  if(objAll.userlogged.valid != "logged"&&emailFromStorage&& emailFromStorage.valid === "logged"){
+    console.log(emailFromStorage);
+    dispatch(userlog(emailFromStorage))
+  }
   return (
     <div className="App">
       
@@ -37,11 +45,8 @@ function App() {
      <Link to="/rules">Terms and Rules</Link>
      {objAll.userlogged.valid === "logged"?null:  <Link to="/registerandlogin">Login or Register</Link>}
      <p className='navtime'>{curentTime}</p>
-  
         <Logout></Logout>
-
      </nav>
-
      <Routes>
        <Route path='/' element={<Items></Items>} ></Route>
        <Route path='/sold' element={<Sold></Sold>} ></Route>
@@ -52,7 +57,7 @@ function App() {
        <Route path='/item/:id' element={<Item></Item>} ></Route>
        <Route path='/categorie/:type' element={<Type></Type>} ></Route>
      </Routes>
-    
+    <Footer className="footer"></Footer>
     </div>
   );
 }

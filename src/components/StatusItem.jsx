@@ -40,7 +40,7 @@ useEffect(() => {
   }}
 
   return (
-    <div>{props.itemById&&props.itemById.status=== "readyToSale"?"":props.itemById.status}</div>
+    <div>{props.itemById&&props.itemById.status=== "readyToSale"?"":" "}</div>
   )
 }
 

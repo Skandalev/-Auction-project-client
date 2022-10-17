@@ -1,6 +1,7 @@
 
   import React from 'react'
   import { useState } from 'react'
+  import { Link } from 'react-router-dom'
   import { useSpring, animated, config } from 'react-spring'
   import qqq from './qqq.png'
   const Springgg = () => {
@@ -15,7 +16,7 @@
       onRest: () => set(!flip),
     })
     return (
-        <animated.h1 style={props}> <img src={qqq} alt=""  style={{width:"14vw"}}/></animated.h1>
+       <Link to="../">   <animated.h1 style={props}> <img src={qqq} alt=""  style={{width:"43vw"}}/></animated.h1> </Link> 
     )
   }
   

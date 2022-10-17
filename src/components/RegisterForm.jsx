@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { change, userlog, selectAll } from "../redux/InfoSlice";
 import Springgg from "./Springgg";
-
+import Button from 'react-bootstrap/Button';
 const RegisterForm = () => {
   const [LoginAnswer, setLoginAnswer] = useState({});
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const RegisterForm = () => {
     .then((res) => {
       setLoginAnswer(res.data);
       console.log(res.data);
-      
+      localStorage.setItem('mySecretKey',JSON.stringify(res.data))
       dispatch(userlog(res.data));
       
 
@@ -70,13 +70,15 @@ const RegisterForm = () => {
   // || objAll.amount=== true
 
   return (
+    
     <div className="register">
+     
       {LoginAnswer.valid === "logged" || objAll.userlogged.valid=== "logged" ? (
-        <div> 
+        <div style={{minHeight:"100vh"}}> 
           <h1>
             you are logged {LoginAnswer.user && LoginAnswer.user.fullName}
           </h1>
-
+          <h3>Click on the logo</h3>
           <Springgg></Springgg>
           <br></br>
         </div>
@@ -174,13 +176,14 @@ const RegisterForm = () => {
                 )}
               </div>
               <div className="text-center">
-                <button
+                <Button
                   className="bg-brown-500 rounded p-2 text-red"
                   type="submit"
+                  variant="primary"
                   
                 >
                   Submit
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -238,16 +241,16 @@ const RegisterForm = () => {
                   {objAll.userlogged.valid=== "wrong"&&  <p>wrong email or password</p>   }
                   {objAll.userlogged.valid=== "not"&&  <p>this email doesnt have account</p>   }
                   <p>{errors.agree && touched.phoneNumber && errors.agree}</p>
-                  <button
+                  <Button
                    className="bg-brown-500 rounded p-2 text-red"
                     type="submit"
-                    variant="contained"
+                    variant="primary"
                     onClick={() => {
                       loginButton(values);
                     }}
                   >
                     Log In
-                  </button>
+                  </Button>
                   <h1>david@gmail.com</h1>
                   <h1>1234567</h1>
                 </form>
