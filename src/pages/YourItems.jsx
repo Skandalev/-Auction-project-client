@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/esm/Button'
 import ShowUsersSoldItems from '../components/ShowUsersSoldItems' 
 import ShowUsersNoBidsItems from '../components/ShowUsersNoBidsItems'
 import ShowUsersSaleItems from '../components/ShowUsersSaleItems'
+import ShowUsersWon from '../components/ShowUsersWon'
 const YourItems = () => {
   const objAll= useSelector(selectAll)
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const YourItems = () => {
   const [OpenSold, setOpenSold] = useState(false)
   const [OpenNo, setOpenNo] = useState(false)
   const [OpenSale, setOpenSale] = useState(false)
+  const [OpenWin, setOpenWin] = useState(false)
   return (
     <div style={{minHeight:"80vh"}}>
       <br />
@@ -40,8 +42,14 @@ const YourItems = () => {
       <label htmlFor="openAll">click here to see All the of Auctions on the market sold and not </label>
       <Button id='openAll' onClick={()=>{setOpenAll(!OpenAll)}} variant='warning'>All</Button>
        {OpenAll&& <ShowUsersItems setOpenAll={setOpenAll} ></ShowUsersItems>}
-       <br /> <br /> <br /><br />
+       <br /> <br /> <br />
        <h4> <u> Here you can see all your Winned Auction detailes and finish THE <strong> PURCHASE</strong></u></h4>
+
+         
+      <label htmlFor="openwin">click here to see All Winned Auctions </label>
+      <Button id='openwin' onClick={()=>{setOpenWin(!OpenWin)}} variant='success'>All Winned</Button>
+       {OpenWin&& <ShowUsersWon setOpenWin={setOpenWin} ></ShowUsersWon>}
+       <br /> <br />
     </div>
   )
 }

@@ -25,12 +25,19 @@ const AddItems = () => {
               startselltime: new Date().toLocaleString(),
                 clientemail:"",
                  status:"readyToSale"
+
               }
         console.log(addNew);
         axios.post("/api1/item", addNew).then((res) => {
           // res.data && setNewTodo("");
           
         });
+        const config = {
+          headers:{
+            token: "barier "+objAll.accessToken
+          }
+        }
+        ///////////here
         axios.get("/api1/item").then((res) => {
           res.data &&  console.log("yeaaa");})
         

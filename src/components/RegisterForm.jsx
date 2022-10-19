@@ -60,6 +60,8 @@ const RegisterForm = () => {
       setLoginAnswer(res.data);
       console.log(res.data);
       localStorage.setItem('mySecretKey',JSON.stringify(res.data))
+
+      
       dispatch(userlog(res.data));
       
 

@@ -17,7 +17,7 @@ function Logout() {
      
         {objAll.userlogged.valid === "logged"&& <div>
          
-          <Link to='/youritems'> {objAll.userlogged.user&&objAll.userlogged.user.fullName}'s space </Link>  <br />
+          <Link to='/youritems'> {objAll.userlogged.user&&objAll.userlogged.user.fullName}'s  space </Link> 
          <Button variant="danger" className='logout' > <Link  to='/' onClick={()=>{logoutuser()}}>Log out</Link> </Button>
         </div> }
 
