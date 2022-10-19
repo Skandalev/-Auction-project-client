@@ -13,8 +13,10 @@ import {useDispatch, useSelector} from "react-redux"
 import {change, userlog, selectAll} from "../redux/InfoSlice"
 
 
+
 const Items = () => {
   const [ShowAllItems, setShowAllItems] = useState([]);
+  const [IsOpenAuction, setIsOpenAuction] = useState(true)
   const showAll = () => {
     axios.get("/api1/item").then((res) => {
       res.data && setShowAllItems(res.data);
@@ -38,6 +40,7 @@ const Items = () => {
     <div className="main-div">
       
       {objAll.userlogged.valid != "logged"&&   <div>
+       
         <br /><br />
       <h1> <u> Welcome To The Auctions Site</u></h1>
       <div className="nearthevertical">
@@ -102,7 +105,7 @@ const Items = () => {
               <h6> end of the auction: {e.selltime}</h6> <br />
             {e.objbidprice[0]?  <h2> Last Bid: {e.objbidprice[0]}$</h2>: <h2>starter price:{e.objlastprice}$</h2> } <br />
             {/* <Link to={`item/${e._id}`}>Details </Link> */}
-              <StatusItem itemById={e}></StatusItem>
+              <StatusItem itemById={e} setIsOpenAuction={setIsOpenAuction}></StatusItem>
               {/* <button
                 onClick={() => {
                   delete1(e._id);

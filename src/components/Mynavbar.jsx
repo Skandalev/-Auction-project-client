@@ -63,7 +63,7 @@ function Mynavbar(props) {
                   </NavDropdown>
                   {objAll.userlogged.valid === "logged"&& <div>
                               
-                              <Link to='/youritems'> <p> {objAll.userlogged.user&&objAll.userlogged.user.fullName}s <br /> peronal area </p> </Link> 
+                              <Link to='/youritems' onClick={() => setExpanded(false)}> <p> {objAll.userlogged.user&&objAll.userlogged.user.fullName}s <br /> peronal area </p> </Link> 
                               <Button  variant="danger" >    <Link to='/' onClick={()=>{logoutuser()}}> log out</Link>  </Button>
                         </div> }
                 </Nav>

@@ -15,6 +15,7 @@ function Item() {
   const [newArray, setnewArray] = useState([]);
   const [bidInput, setbidInput] = useState(0);
   let [bidCounter, setbidCounter] = useState(0)
+  const [IsOpenAuction, setIsOpenAuction] = useState(true)
  
   const objAll = useSelector(selectAll);
 
@@ -96,11 +97,11 @@ function Item() {
       <h5> started: {itemById.startselltime}</h5>
       <h5>end of auction: {itemById.selltime}</h5>
       <TimeLeft selltime={itemById.selltime}  ></TimeLeft>
-      <StatusItem itemById={itemById}></StatusItem>
+      <StatusItem itemById={itemById} setIsOpenAuction={setIsOpenAuction}></StatusItem>
       {itemById.objbidprice && (
         <h3>{!itemById.objbidprice[0]&&itemById.status==="readyToSale"&&"no bids yet"}</h3>
       )}
-      {itemById.status==="readyToSale"?
+    {IsOpenAuction&& itemById.status==="readyToSale"?
       objAll.userlogged.valid === "logged" ? (
         <div>
           logged as: {objAll.userlogged.user.email}

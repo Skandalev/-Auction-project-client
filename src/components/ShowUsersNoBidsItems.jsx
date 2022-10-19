@@ -11,6 +11,9 @@ const ShowUsersNoBidsItems = (props) => {
     }, [])
     const objAll= useSelector(selectAll)
       const [usersItems, setusersItems] = useState({})
+
+      const [NewTime, setNewTime] = useState(1)
+      const [NewPrice, setNewprice] = useState(100)
       function showUsersItems(){
         objAll.userlogged.valid === "logged"&&(
           axios.post("/api1/soldto", {email:objAll.userlogged.user.email,status:"no bids"}).then( async (res) => {
@@ -27,8 +30,29 @@ const ShowUsersNoBidsItems = (props) => {
               })
               .catch((err) => console.log(err));
           }; 
-     const publishAgain = (e) =>{
-             
+     const publishAgain = (values) =>{
+      const d = new Date()
+     console.log(NewTime);
+       const addNew = {
+        objname: values.objname,
+         objtype: values.objtype,
+          picture:values.picture,
+           objlastprice:NewPrice,
+            objselleremail:objAll.userlogged.user.email,
+             selltime:new Date(d.getFullYear(),d.getMonth(),d.getDate()+parseInt(NewTime),d.getHours(),d.getMinutes(),d.getSeconds()).toLocaleString(),
+            startselltime: new Date().toLocaleString(),
+              clientemail:"",
+               status:"readyToSale"
+            }
+      console.log(addNew);
+      axios.post("/api1/item", addNew).then((res) => {
+        // res.data && setNewTodo("");
+        
+      });
+      // axios.get("/api1/item").then((res) => {
+      //   res.data &&  console.log("yeaaa");})
+      delete1(values._id)
+      showUsersItems()       
      }     
           
   return (
@@ -61,8 +85,18 @@ const ShowUsersNoBidsItems = (props) => {
              sold to: { e.clientemail} <br />
              starter prize:{e.objlastprice} <br />{" "}
              <label htmlFor=""></label>
-            <input  onChange={(e)=>{}} type="text" style={{textAlign:"center"}} placeholder={e.objlastprice}  /> <br />
-             end of auction: {e.selltime} <br />
+            <input  onChange={(e)=>{setNewprice(e.target.value)}} type="text" style={{textAlign:"center"}} placeholder={e.objlastprice}  /> <br />
+             end of last auction: {e.selltime} <br />
+             <label htmlFor="timeonauction">Choose new time for the auction:</label>
+                <select  type="timeonauction"
+                  name="timeonauction"
+                  onChange={(e)=>{setNewTime(e.target.value)}}
+                  >
+                    <option value="1">1 days</option>
+                    <option value="2">2 days</option>
+                    <option value="3">3 days</option>
+                  </select>
+                  <br />
              <Button variant='danger'
                onClick={() => {
                  delete1(e._id);

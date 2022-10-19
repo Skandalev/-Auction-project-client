@@ -5,7 +5,7 @@ import {change, selectAll} from "../redux/InfoSlice"
 import {useDispatch, useSelector} from "react-redux"
 import Button from 'react-bootstrap/Button';
 import './ShowUsersItems.css'
-const ShowUsersSoldItems = (props) => {
+const ShowUsersWon = (props) => {
     useEffect(() => {
         showUsersItems()
     }, [])
@@ -83,4 +83,4 @@ const ShowUsersSoldItems = (props) => {
   )
 }
 
-export default ShowUsersSoldItems
+export default ShowUsersWon

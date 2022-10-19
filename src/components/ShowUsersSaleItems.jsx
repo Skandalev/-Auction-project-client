@@ -5,7 +5,7 @@ import {change, selectAll} from "../redux/InfoSlice"
 import {useDispatch, useSelector} from "react-redux"
 import Button from 'react-bootstrap/Button';
 import './ShowUsersItems.css'
-const ShowUsersSoldItems = (props) => {
+const ShowUsersSaleItems = (props) => {
     useEffect(() => {
         showUsersItems()
     }, [])
@@ -15,7 +15,7 @@ const ShowUsersSoldItems = (props) => {
         console.log(objAll.userlogged.user.email)
         objAll.userlogged.valid === "logged"&&(
         
-          axios.post("/api1/soldto", {email:objAll.userlogged.user.email,status:"sold"}).then( async (res) => {
+          axios.post("/api1/soldto", {email:objAll.userlogged.user.email,status:"readyToSale"}).then( async (res) => {
            await res.data && setusersItems(res.data);
           }))
         }
@@ -32,11 +32,11 @@ const ShowUsersSoldItems = (props) => {
   return (
     <div>{usersItems.items&&usersItems.items.length>0? 
         <div>
-         <h1>All your Sold Items</h1>
-         <p>We sent email to the winner of the Auction with your details but you can contact them via email</p>
-         <p>you can delete your action lots by clicking on the X button when ever you want</p>
+         <h1>All your current Auctions</h1>
+         <p>you can delete your action lots by clicking on the X button</p>
+         <p>if you delete lots three hours before the the auction ends you must pay abandon fee </p>
          <p>the Item will be deleted permanently</p>
-      </div>: <div> <h3>You still dont have sold auction items </h3> <h4>you will see your sold auctions here when someone buy them </h4> </div>}
+      </div>: <div> <h3>You still dont have auction items </h3> <h4>you will see your auctions here</h4> </div>}
        {usersItems.items&&
        
        usersItems.items.map((e, i) => {
@@ -83,4 +83,4 @@ const ShowUsersSoldItems = (props) => {
   )
 }
 
-export default ShowUsersSoldItems
+export default ShowUsersSaleItems
