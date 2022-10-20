@@ -10,7 +10,7 @@ const Sold = () => {
       },[])  
     
     const showAll =  () => {
-       axios.get('/api1/sold').then( async  (res) => {
+       axios.get(`${process.env.REACT_APP_BASE_URL}/api1/sold`).then( async  (res) => {
        await  res.data &&  setshowAllFinshedAuctions(res.data);
         })
       }  

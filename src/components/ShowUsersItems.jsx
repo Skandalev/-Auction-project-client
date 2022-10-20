@@ -13,13 +13,13 @@ const ShowUsersItems = (props) => {
       const [usersItems, setusersItems] = useState({})
       function showUsersItems(){
         objAll.userlogged.valid === "logged"&&(
-          axios.post("/api1/additems", {email:objAll.userlogged.user.email}).then( async (res) => {
+          axios.post(`${process.env.REACT_APP_BASE_URL}/api1/additems`, {email:objAll.userlogged.user.email}).then( async (res) => {
            await res.data && setusersItems(res.data);
           }))
         }
         const delete1 = (id) => {
             axios
-              .delete(`/api1/item/${id}`)
+              .delete(`${process.env.REACT_APP_BASE_URL}/api1/item/${id}`)
               .then((res) => {
                 if (res.data) {
                   showUsersItems();

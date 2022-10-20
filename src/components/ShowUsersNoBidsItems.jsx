@@ -16,13 +16,13 @@ const ShowUsersNoBidsItems = (props) => {
       const [NewPrice, setNewprice] = useState(100)
       function showUsersItems(){
         objAll.userlogged.valid === "logged"&&(
-          axios.post("/api1/soldto", {email:objAll.userlogged.user.email,status:"no bids"}).then( async (res) => {
+          axios.post(`${process.env.REACT_APP_BASE_URL}/api1/soldto`, {email:objAll.userlogged.user.email,status:"no bids"}).then( async (res) => {
            await res.data && setusersItems(res.data);
           }))
         }
         const delete1 = (id) => {
             axios
-              .delete(`/api1/item/${id}`)
+              .delete(`${process.env.REACT_APP_BASE_URL}/api1/item/${id}`)
               .then((res) => {
                 if (res.data) {
                   showUsersItems();
@@ -45,7 +45,7 @@ const ShowUsersNoBidsItems = (props) => {
                status:"readyToSale"
             }
       console.log(addNew);
-      axios.post("/api1/item", addNew).then((res) => {
+      axios.post(`${process.env.REACT_APP_BASE_URL}/api1/item`, addNew).then((res) => {
         // res.data && setNewTodo("");
         
       });

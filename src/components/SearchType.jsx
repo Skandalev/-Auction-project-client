@@ -9,7 +9,7 @@ const SearchType = () => {
   const [ShowAllItems, setShowAllItems] = useState({})
   const {type} = useParams()
   const showAll = () => {
-    axios.get(`/api1//categorie/${type}`).then( async (res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api1//categorie/${type}`).then( async (res) => {
      await res.data && setShowAllItems(res.data);
     });
   };

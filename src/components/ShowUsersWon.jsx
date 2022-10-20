@@ -16,13 +16,13 @@ const ShowUsersWon = (props) => {
         console.log(objAll.userlogged.user.email)
         objAll.userlogged.valid === "logged"&&(
         
-          axios.post("/api1/won", {email:objAll.userlogged.user.email}).then( async (res) => {
+          axios.post(`${process.env.REACT_APP_BASE_URL}/api1/won`, {email:objAll.userlogged.user.email}).then( async (res) => {
            await res.data && setusersItems(res.data);
           }))
         }
         const delete1 = (id) => {
             axios
-              .delete(`/api1/item/${id}`)
+              .delete(`${process.env.REACT_APP_BASE_URL}/api1/item/${id}`)
               .then((res) => {
                 if (res.data) {
                   showUsersItems();

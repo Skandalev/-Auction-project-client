@@ -15,7 +15,7 @@ function Login () {
   }, []);
 
   const showAll = () => {
-    axios.get("/api/users").then((res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api/users`).then((res) => {
       res.data && setShowAllusers(res.data);
       console.log(res.data);
     });
@@ -23,17 +23,17 @@ function Login () {
   const addUser= () =>{
     const addNew = {email:changeEmail,password:changePassword}
     console.log(addNew);
-    axios.post("/api/users", addNew).then((res) => {
+    axios.post(`${process.env.REACT_APP_BASE_URL}/api/users`, addNew).then((res) => {
       // res.data && setNewTodo("");
       
     });
-    axios.get("/api/users").then((res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api/users`).then((res) => {
       res.data && setShowAllusers(res.data);})
     
   }
   const delete1 = (id) => {
     axios
-    .delete(`/api/users/${id}`)
+    .delete(`${process.env.REACT_APP_BASE_URL}/api/users/${id}`)
     .then((res) => {
         if (res.data) {
             showAll();
@@ -43,7 +43,7 @@ function Login () {
 };
 const loginButton = () =>{
   const login = {email:changeLoginEmail,password:changeLoginPassword}
-  axios.post("/api/users/login", login).then((res) => {
+  axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/login`, login).then((res) => {
    setLoginAnswer(res.data)
    console.log(LoginAnswer);
  

@@ -22,7 +22,7 @@ const StatusItem = (props) => {
 
         await axios
           .patch(
-            `http://localhost:3000/api1/item/${props.itemById._id}`,
+            `${process.env.REACT_APP_BASE_URL}/api1/item/${props.itemById._id}`,
             addNew
           )
           .then((res) => {
@@ -41,7 +41,7 @@ const StatusItem = (props) => {
 
         await axios
           .patch(
-            `http://localhost:3000/api1/item/${props.itemById._id}`,
+            `${process.env.REACT_APP_BASE_URL}/api1/item/${props.itemById._id}`,
             addNew
           )
           .then((res) => {

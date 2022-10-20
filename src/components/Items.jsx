@@ -13,15 +13,16 @@ import {useDispatch, useSelector} from "react-redux"
 import {change, userlog, selectAll} from "../redux/InfoSlice"
 
 
-
 const Items = () => {
+
   const [ShowAllItems, setShowAllItems] = useState([]);
   const [IsOpenAuction, setIsOpenAuction] = useState(true)
   const showAll = () => {
-    axios.get("/api1/item").then((res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api1/item`).then((res) => {
       res.data && setShowAllItems(res.data);
     });
   };
+  
   useEffect(() => {
     showAll();
   }, []);

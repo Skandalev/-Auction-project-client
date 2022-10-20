@@ -43,7 +43,7 @@ const RegisterForm = () => {
       phoneNumber: values.phoneNumber,
     };
     console.log(addNew);
-    axios.post("/api/users", addNew).then((res) => {
+    axios.post(`${process.env.REACT_APP_BASE_URL}/api/users`, addNew).then((res) => {
       // res.data && setNewTodo("");
     });
   };
@@ -55,7 +55,7 @@ const RegisterForm = () => {
     const login = { email: values.email, password: values.password };
     console.log(login);
     axios
-    .post("/api/users/login", login)
+    .post(`${process.env.REACT_APP_BASE_URL}/api/users/login`, login)
     .then((res) => {
       setLoginAnswer(res.data);
       console.log(res.data);

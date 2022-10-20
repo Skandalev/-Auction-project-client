@@ -1,6 +1,6 @@
 import React from 'react'
 import './Rules.css'
-import { useState,useEffect } from 'react'
+
 const Rules = () => {
  
   return (

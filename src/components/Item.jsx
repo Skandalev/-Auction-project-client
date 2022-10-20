@@ -20,7 +20,7 @@ function Item() {
   const objAll = useSelector(selectAll);
 
   function showAll() {
-    axios.get(`http://localhost:3000/api1/item/${id}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api1/item/${id}`).then((res) => {
       res.data && setitemById(res.data);
       setnewArray(itemById.objbidprice);
       setbidCounter(bidCounter++);
@@ -62,13 +62,13 @@ function Item() {
     const addNew = { objbidprice: newArray, personbid: newPersonArray };
 
     await axios
-      .patch(`http://localhost:3000/api1/item/${id}`, addNew)
+      .patch(`${process.env.REACT_APP_BASE_URL}/api1/item/${id}`, addNew)
       .then((res) => {
         // res.data && console.log(res.data)
       });
 
     await axios
-      .get(`http://localhost:3000/api1/item/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/api1/item/${id}`)
       .then(async (res) => {
         (await res.data) && setitemById(res.data);
       });

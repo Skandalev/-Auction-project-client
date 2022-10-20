@@ -3,18 +3,16 @@ import './App.css';
 import AddItems from './pages/AddItems';
 import { Link, Route, Routes } from 'react-router-dom';
 import Items from './components/Items';
-
 import RegisterForm from './components/RegisterForm';
-import React, { PureComponent } from 'react'
 import Item from './components/Item';
 import Logout from './components/Logout';
 import Type from './components/SearchType';
 import Rules from './pages/Rules';
 import Sold from './pages/Sold';
 import YourItems from './pages/YourItems';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import {change, userlog, selectAll} from "./redux/InfoSlice"
+import { userlog, selectAll} from "./redux/InfoSlice"
 import Mynavbar from './components/Mynavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/Footer';

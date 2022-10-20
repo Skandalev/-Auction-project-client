@@ -13,7 +13,7 @@ const Sold = () => {
     
     const showAll =  () => {
 
-       axios.get('/api1//item').then( async  (res) => {
+       axios.get(`${process.env.REACT_APP_BASE_URL}/api1//item`).then( async  (res) => {
        await  res.data &&  setshowAllFinshedAuctions(res.data);
         });   
        if(showAllFinshedAuctions.clientsold){

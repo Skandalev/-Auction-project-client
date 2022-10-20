@@ -1,17 +1,20 @@
-import { useFormik, Formik } from "formik";
+import {  Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import {useDispatch, useSelector} from "react-redux"
-import {change, selectAll} from "../redux/InfoSlice"
-import { useState, useEffect } from "react";
+import { useSelector} from "react-redux"
+import { selectAll} from "../redux/InfoSlice"
+
 import './AddItems.css'
 import Button from 'react-bootstrap/Button';
+// import { publicRequest, userRequest } from "../requestMethod";
 const AddItems = () => {
   const objAll= useSelector(selectAll)
   let minutCheck = 0
-
     const addItem=  (values) =>{
+     
         //  {objname: values.objname, objtype: values.objtype, picture:values.picture, objlastprice:values.objlastprice, objselleremail:values.objselleremail}
+        
+       console.log(objAll.accessToken);
         const d = new Date()
         console.log(minutCheck)
         console.log(values.timeonauction);
@@ -28,18 +31,31 @@ const AddItems = () => {
 
               }
         console.log(addNew);
-        axios.post("/api1/item", addNew).then((res) => {
-          // res.data && setNewTodo("");
-          
-        });
+
+
+        let emailFromStorage = localStorage.getItem('mySecretKey')
+        if(emailFromStorage){
+        emailFromStorage = JSON.parse(emailFromStorage)
+        console.log(emailFromStorage.accessToken);
+        }
+
         const config = {
           headers:{
-            token: "barier "+objAll.accessToken
+            'token': "barier "+emailFromStorage.accessToken
           }
         }
+
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api1/item`, addNew,config).then((res) => {
+          res.data &&  console.log("we sent")
+        
+        });
+
+        // userRequest.post("/api1/item", addNew).then((res) => {
+        //   res.data &&  console.log("item sent");})
+       
         ///////////here
-        axios.get("/api1/item").then((res) => {
-          res.data &&  console.log("yeaaa");})
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api1/item`).then((res) => {
+          res.data &&  console.log("yeaaa")})
         
       }
     const schemaa = Yup.object().shape({
