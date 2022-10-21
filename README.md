@@ -39,13 +39,11 @@ Open source. You are welcome!
 ## How to use? <a name="use"></a>
 
 #### Clone this repository
-$ git clone or $ git fork
+$ git clone              
 
 #### Go into the repository
 
-
 $ npm install
-
 
 $ npm start
 
