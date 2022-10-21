@@ -12,13 +12,14 @@ const ShowUsersSoldItems = (props) => {
     const objAll= useSelector(selectAll)
       const [usersItems, setusersItems] = useState({})
       function showUsersItems(){
-        console.log(objAll.userlogged.user.email)
+        // console.log(objAll.userlogged.user.email)
         objAll.userlogged.valid === "logged"&&(
-        
+          
           axios.post(`${process.env.REACT_APP_BASE_URL}/api1/soldto`, {email:objAll.userlogged.user.email,status:"sold"}).then( async (res) => {
            await res.data && setusersItems(res.data);
           }))
         }
+        // console.log(process.env.REACT_APP_BASE_URL)
         const delete1 = (id) => {
             axios
               .delete(`${process.env.REACT_APP_BASE_URL}/api1/item/${id}`)

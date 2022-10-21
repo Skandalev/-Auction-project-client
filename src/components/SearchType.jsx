@@ -23,7 +23,7 @@ const SearchType = () => {
 {ShowAllItems.items&&ShowAllItems.items.length>0&&<h1>{type} </h1>}
     
   <div className="items">
-        {ShowAllItems.items&&ShowAllItems.items.length>0? ShowAllItems.items.map((e, i) => {
+        {ShowAllItems.items?ShowAllItems.items.length>0? ShowAllItems.items.map((e, i) => {
           return (
             <span key={i} className="item">
               <h2> {e.objname}</h2> 
@@ -52,7 +52,7 @@ const SearchType = () => {
             </span>
            
           );
-        }):    <h1>Loading {type} items</h1> }
+        }):    <h1>No {type} items</h1> : <h1>Loading {type} items</h1> }
       </div>
     </div>
   )

@@ -8,6 +8,7 @@ import Springgg from "./Springgg";
 import Button from 'react-bootstrap/Button';
 const RegisterForm = () => {
   const [LoginAnswer, setLoginAnswer] = useState({});
+  const [RegisterOpen, setRegisterOpen] = useState(false)
   const dispatch = useDispatch();
   const objAll = useSelector(selectAll);
 
@@ -42,7 +43,7 @@ const RegisterForm = () => {
       fullName: values.fullName,
       phoneNumber: values.phoneNumber,
     };
-    console.log(addNew);
+    // console.log(addNew);
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/users`, addNew).then((res) => {
       // res.data && setNewTodo("");
     });
@@ -53,12 +54,12 @@ const RegisterForm = () => {
   });
   const loginButton = (values) => {
     const login = { email: values.email, password: values.password };
-    console.log(login);
+    // console.log(login);
     axios
     .post(`${process.env.REACT_APP_BASE_URL}/api/users/login`, login)
     .then((res) => {
       setLoginAnswer(res.data);
-      console.log(res.data);
+      // console.log(res.data);
       localStorage.setItem('mySecretKey',JSON.stringify(res.data))
 
       
@@ -67,13 +68,13 @@ const RegisterForm = () => {
 
         // res.data && setNewTodo("");
       })
-      .then(console.log(objAll));
+      // .then(console.log(objAll));
   };
   // || objAll.amount=== true
 
   return (
     
-    <div className="register">
+    <div style={{minHeight:'80vh'}} className="register">
      
       {LoginAnswer.valid === "logged" || objAll.userlogged.valid=== "logged" ? (
         <div style={{minHeight:"100vh"}}> 
@@ -87,7 +88,12 @@ const RegisterForm = () => {
       ) : (
         <div>
           <br />
+          {!RegisterOpen&&  <div>
+          <h3>Don't hava an account?</h3>
+          <Button  variant="primary" onClick={()=>{setRegisterOpen(true)}}>Register</Button>
           <br />
+                        </div>}
+          {RegisterOpen&&
           <div className="bg-blue-300 min-w-screen min-h-screen overflow-x-hidden">
             <form
               onSubmit={formik.handleSubmit}
@@ -189,6 +195,7 @@ const RegisterForm = () => {
               </div>
             </form>
           </div>
+      }
 
           <div className="loginloc">
             <h3>Log in</h3>
@@ -196,7 +203,7 @@ const RegisterForm = () => {
             <Formik
               initialValues={{ email: "", password: "" }}
               onSubmit={async (values) => {
-                alert(JSON.stringify(values));
+                // alert(JSON.stringify(values));
                 loginButton(values);
               
              
@@ -253,8 +260,8 @@ const RegisterForm = () => {
                   >
                     Log In
                   </Button>
-                  <h1>david@gmail.com</h1>
-                  <h1>1234567</h1>
+                  {/* <h1>david@gmail.com</h1>
+                  <h1>1234567</h1> */}
                 </form>
                 
               )}

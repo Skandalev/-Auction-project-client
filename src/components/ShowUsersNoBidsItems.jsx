@@ -32,7 +32,7 @@ const ShowUsersNoBidsItems = (props) => {
           }; 
      const publishAgain = (values) =>{
       const d = new Date()
-     console.log(NewTime);
+    //  console.log(NewTime);
        const addNew = {
         objname: values.objname,
          objtype: values.objtype,

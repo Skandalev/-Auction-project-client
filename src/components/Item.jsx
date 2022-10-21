@@ -29,20 +29,20 @@ function Item() {
 
   useEffect(() => {
     showAll();
-    console.log(bidCounter);
-    console.log(newArray);
+    // console.log(bidCounter);
+    // console.log(newArray);
   }, [bidCounter]);
 
   useEffect(() => {
     showAll();
-    console.log(id);
+    // console.log(id);
     
   }, []);
 
   async function addBid() {
-    console.log(itemById);
+    // console.log(itemById);
     let newPersonArray = itemById.personbid;
-    console.log(newPersonArray);
+    // console.log(newPersonArray);
     if (parseInt(bidInput) >= parseInt(itemById.objlastprice)) {
       if (parseInt(newArray[0]) < parseInt(bidInput) || newArray.length === 0) {
         if (

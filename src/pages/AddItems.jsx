@@ -14,10 +14,10 @@ const AddItems = () => {
      
         //  {objname: values.objname, objtype: values.objtype, picture:values.picture, objlastprice:values.objlastprice, objselleremail:values.objselleremail}
         
-       console.log(objAll.accessToken);
+      //  console.log(objAll.accessToken);
         const d = new Date()
-        console.log(minutCheck)
-        console.log(values.timeonauction);
+        // console.log(minutCheck)
+        // console.log(values.timeonauction);
          const addNew = {
           objname: values.objname,
            objtype: values.objtype,
@@ -30,13 +30,13 @@ const AddItems = () => {
                  status:"readyToSale"
 
               }
-        console.log(addNew);
+        // console.log(addNew);
 
 
         let emailFromStorage = localStorage.getItem('mySecretKey')
         if(emailFromStorage){
         emailFromStorage = JSON.parse(emailFromStorage)
-        console.log(emailFromStorage.accessToken);
+        // console.log(emailFromStorage.accessToken);
         }
 
         const config = {
@@ -46,7 +46,7 @@ const AddItems = () => {
         }
 
         axios.post(`${process.env.REACT_APP_BASE_URL}/api1/item`, addNew,config).then((res) => {
-          res.data &&  console.log("we sent")
+          res.data &&  alert(`Item  ${addNew.objname} added ` )
         
         });
 
@@ -76,7 +76,7 @@ const AddItems = () => {
                 console.log(minutCheck);
                   values.timeonauction=0
                 }
-              alert(JSON.stringify(values));
+              // alert(JSON.stringify(values));
              
               addItem(values)
               resetForm({values: ""})

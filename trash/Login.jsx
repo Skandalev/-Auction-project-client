@@ -17,12 +17,12 @@ function Login () {
   const showAll = () => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/api/users`).then((res) => {
       res.data && setShowAllusers(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     });
   };
   const addUser= () =>{
     const addNew = {email:changeEmail,password:changePassword}
-    console.log(addNew);
+    // console.log(addNew);
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/users`, addNew).then((res) => {
       // res.data && setNewTodo("");
       
@@ -45,7 +45,7 @@ const loginButton = () =>{
   const login = {email:changeLoginEmail,password:changeLoginPassword}
   axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/login`, login).then((res) => {
    setLoginAnswer(res.data)
-   console.log(LoginAnswer);
+  //  console.log(LoginAnswer);
  
     // res.data && setNewTodo("");
   });

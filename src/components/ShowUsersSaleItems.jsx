@@ -12,7 +12,7 @@ const ShowUsersSaleItems = (props) => {
     const objAll= useSelector(selectAll)
       const [usersItems, setusersItems] = useState({})
       function showUsersItems(){
-        console.log(objAll.userlogged.user.email)
+        // console.log(objAll.userlogged.user.email)
         objAll.userlogged.valid === "logged"&&(
         
           axios.post(`${process.env.REACT_APP_BASE_URL}/api1/soldto`, {email:objAll.userlogged.user.email,status:"readyToSale"}).then( async (res) => {

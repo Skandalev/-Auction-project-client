@@ -29,7 +29,7 @@ function App() {
     emailFromStorage = JSON.parse(emailFromStorage)
     }
   if(objAll.userlogged.valid != "logged"&&emailFromStorage&& emailFromStorage.valid === "logged"){
-    console.log(emailFromStorage);
+    // console.log(emailFromStorage);
     dispatch(userlog(emailFromStorage))
   }
   return (
