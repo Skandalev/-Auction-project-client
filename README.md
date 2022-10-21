@@ -11,10 +11,11 @@ Open source. You are welcome!
 
 1. [ Description ](#Description)
 2. [ Netlify Demo ](#Demo)
-3. [ Pictures ](#Pictures)
-4. [ Built with ](#Builtwith)
-5. [ To-do ](#To-do)
-6. [ Author ](#Author)
+3. [ How to Use ](#use)
+4. [ Pictures ](#Pictures)
+5. [ Built with ](#Builtwith)
+6. [ To-do ](#To-do)
+7. [ Author ](#Author)
 
 
 
@@ -34,6 +35,19 @@ Open source. You are welcome!
 ## Demo version on netlify <a name="Demo"></a>
 [Auctions](https://auctions-skandalev.netlify.app/)
 
+
+## How to use? <a name="use"></a>
+
+#### Clone this repository
+$ git clone or $ git fork
+
+#### Go into the repository
+
+
+$ npm install
+
+
+$ npm start
 
 
 ## Pictures <a name="Pictures"></a>
